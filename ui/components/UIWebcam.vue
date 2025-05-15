@@ -88,6 +88,8 @@ export default {
                         await new Promise(resolve => setTimeout(resolve, 100))
                     }
                     
+                    console.log(JSON.stringify(devices))
+
                     const videoDevices = devices.filter(device => device.kind === 'videoinput')
 
                     if (videoDevices.length > 0) {
