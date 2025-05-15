@@ -55,11 +55,9 @@ export default {
     },
     mounted () {
         this.$socket.on('msg-input:' + this.id, async (msg) => {
-            if (msg.payload === 'capture') {
-                await this.startWebcam()
-                await this.captureImage()
-            }
+            await this.init(msg)
         })
+        this.$socket.emit('widget-load', this.id)
     },
     beforeUnmount () {
         this.$socket?.off('widget-load:' + this.id)
@@ -67,6 +65,16 @@ export default {
         this.stopWebcam()
     },
     methods: {
+
+        async init(msg) {
+            console.log(msg.payload)
+            if (msg.payload === 'start') {
+                await this.startWebcam()
+            } else if (msg.payload === 'capture') {
+                await this.startWebcam()
+                await this.captureImage()
+            }
+        },
 
         async startWebcam () {
             if (!this.cameraIsOn) {
@@ -76,7 +84,7 @@ export default {
 
                     if (videoDevices.length > 0) {
                         this.cameraDevices = videoDevices
-                        this.selectedDevice = videoDevices[0].deviceId // Select the first camera by default
+                        this.selectedDevice = videoDevices.find(c => /back|rear|environment|rück/i.test(c.label))?.deviceId ?? videoDevices[0].deviceId // Select the first camera by default
                         await this.openCamera()
                     } else {
                         console.error('No video input devices found.')
