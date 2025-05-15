@@ -84,13 +84,13 @@ export default {
                     let devices = [];
                     
                     while (devices.length == 0) {
-                        devices = await navigator.mediaDevices.enumerateDevices();
+                        devices = await navigator.mediaDevices.enumerateDevices().filter(device => device.kind === 'videoinput' && device.label != '')
                         await new Promise(resolve => setTimeout(resolve, 100))
                     }
                     
                     console.log(JSON.stringify(devices))
 
-                    const videoDevices = devices.filter(device => device.kind === 'videoinput')
+                    const videoDevices = devices
 
                     if (videoDevices.length > 0) {
                         this.cameraDevices = videoDevices
