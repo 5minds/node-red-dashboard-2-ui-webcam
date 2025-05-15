@@ -87,8 +87,6 @@ export default {
                         devices = await navigator.mediaDevices.enumerateDevices().filter(device => device.kind === 'videoinput' && device.label != '')
                         await new Promise(resolve => setTimeout(resolve, 100))
                     }
-                    
-                    console.log(JSON.stringify(devices))
 
                     const videoDevices = devices
 
