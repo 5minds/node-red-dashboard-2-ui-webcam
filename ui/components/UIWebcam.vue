@@ -143,6 +143,11 @@ export default {
                 canvas.width = videoWidth
                 canvas.height = videoHeight
 
+                // 1. Ursprung nach rechts verschieben …
+                context.translate(w, 0);
+                // 2. horizontal spiegeln (–1 auf X-Achse)
+                context.scale(-1, 1);
+                
                 context.drawImage(video, 0, 0, videoWidth, videoHeight)
 
                 this.imageData = canvas.toDataURL('image/png')
