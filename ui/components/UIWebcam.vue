@@ -81,7 +81,13 @@ export default {
                 try {
                     await navigator.permissions.query({ name: 'camera' });
 
-                    const devices = await navigator.mediaDevices.enumerateDevices()
+                    let devices = [];
+                    
+                    while (devices.length == 0) {
+                        devices = await navigator.mediaDevices.enumerateDevices();
+                        await new Promise(resolve => setTimeout(resolve, 100))
+                    }
+                    
                     const videoDevices = devices.filter(device => device.kind === 'videoinput')
 
                     if (videoDevices.length > 0) {
