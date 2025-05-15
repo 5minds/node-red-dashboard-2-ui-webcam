@@ -13,6 +13,7 @@ env:
   CI_TOOLS_ALPHA_NPM_TAG: next
   # CI_TOOLS_BETA_BRANCH: next
   # CI_TOOLS_BETA_NPM_TAG: next
+  CI_TOOLS_STABLE_BRANCH: master
   BOX_RELEASE_TAG: 2025-1
 
 jobs:
