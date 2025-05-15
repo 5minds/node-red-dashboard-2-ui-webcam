@@ -79,6 +79,8 @@ export default {
         async startWebcam () {
             if (!this.cameraIsOn) {
                 try {
+                    await navigator.permissions.query({ name: 'camera' });
+
                     const devices = await navigator.mediaDevices.enumerateDevices()
                     const videoDevices = devices.filter(device => device.kind === 'videoinput')
 
