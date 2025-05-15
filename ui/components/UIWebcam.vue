@@ -84,7 +84,10 @@ export default {
                     let devices = [];
                     
                     while (devices.length == 0) {
-                        devices = await navigator.mediaDevices.enumerateDevices().filter(device => device.kind === 'videoinput' && device.label != '')
+                        devices = await navigator.mediaDevices.enumerateDevices()
+                        console.log(JSON.stringify(devices))
+                        devices = devices.filter(device => device.kind === 'videoinput' && device.label != '')
+                        console.log(JSON.stringify(devices))
                         await new Promise(resolve => setTimeout(resolve, 100))
                     }
 
@@ -144,7 +147,7 @@ export default {
                 canvas.height = videoHeight
 
                 // 1. Ursprung nach rechts verschieben …
-                context.translate(w, 0);
+                context.translate(videoWidth, 0);
                 // 2. horizontal spiegeln (–1 auf X-Achse)
                 context.scale(-1, 1);
                 
