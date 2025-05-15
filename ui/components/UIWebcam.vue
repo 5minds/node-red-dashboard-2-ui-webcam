@@ -147,7 +147,7 @@ export default {
                 canvas.height = videoHeight
 
                 // 1. Ursprung nach rechts verschieben …
-                context.translate(w, 0);
+                context.translate(videoWidth, 0);
                 // 2. horizontal spiegeln (–1 auf X-Achse)
                 context.scale(-1, 1);
                 
