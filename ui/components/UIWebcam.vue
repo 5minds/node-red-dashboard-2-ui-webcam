@@ -1,7 +1,7 @@
 <template>
     <div class="ui-webcam-wrapper">
         <div class="video-wrapper">
-            <video ref="video" width="100%" height="100%" playsinline webkit-playsinline muted />
+            <video ref="video" width="100%" height="100%" style="transform: scaleX(-1);" playsinline webkit-playsinline muted />
             <canvas ref="canvas" class="canvas" />
             <button v-if="cameraIsOn === false" class="button power-button" @click="startWebcam">
                 <img class="icon" src="../assets/camera-on.png" height="30px" width="30px" alt="Capture Image" @click="startWebcam">
