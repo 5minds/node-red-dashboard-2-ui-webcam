@@ -80,6 +80,8 @@ export default {
             if (!this.cameraIsOn) {
                 try {
                     let devices = [];
+
+                    await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
                     
                     while (devices.length == 0) {
                         devices = await navigator.mediaDevices.enumerateDevices()
