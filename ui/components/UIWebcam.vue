@@ -79,8 +79,6 @@ export default {
         async startWebcam () {
             if (!this.cameraIsOn) {
                 try {
-                    await navigator.permissions.query({ name: 'camera' });
-
                     let devices = [];
                     
                     while (devices.length == 0) {
@@ -88,7 +86,7 @@ export default {
                         console.log(JSON.stringify(devices))
                         devices = devices.filter(device => device.kind === 'videoinput' && device.label != '')
                         console.log(JSON.stringify(devices))
-                        await new Promise(resolve => setTimeout(resolve, 100))
+                        await new Promise(resolve => setTimeout(resolve, 500))
                     }
 
                     const videoDevices = devices
