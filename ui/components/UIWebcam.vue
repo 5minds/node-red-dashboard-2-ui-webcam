@@ -67,6 +67,7 @@ export default {
     methods: {
 
         async init(msg) {
+            this.msg = msg;
             console.log(msg.payload)
             if (msg.payload === 'start') {
                 await this.startWebcam()
@@ -165,10 +166,10 @@ export default {
                 console.error('Video element not ready or not found.')
             }
         },
-        send (msg) {
-            this.$socket.emit('widget-action', this.id, {
-                payload: msg
-            })
+        send (image) {
+            const msg = this.msg ?? {}
+            msg.payload = image;
+            this.$socket.emit('widget-action', this.id, msg);
         },
         async changeCamera () {
             this.stopWebcam()

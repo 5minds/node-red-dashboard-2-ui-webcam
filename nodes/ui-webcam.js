@@ -12,6 +12,7 @@ module.exports = function (RED) {
             onAction: true,
             onInput: function (msg, send, done) {
                 node.passthru = false
+                base.stores.data.save(base, node, msg);
             }
 
         }
