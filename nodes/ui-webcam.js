@@ -6,12 +6,14 @@ module.exports = function (RED) {
 
         // which group are we rendering this widget
         const group = RED.nodes.getNode(config.group)
+        const base = group.getBase();
 
         // server-side event handlers
         const evts = {
             onAction: true,
             onInput: function (msg, send, done) {
                 node.passthru = false
+                base.stores.data.save(base, node, msg);
             }
 
         }
